@@ -17,12 +17,19 @@
     <body class="font-sans antialiased">
         <div class="flex justify-between px-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <a href="{{ route('posts.index') }}" class="text-lg font-semibold text-white">Posts</a>
-            <a href="{{ route('posts.create') }}" class="px-4 py-2 text-blue-600 bg-white rounded-lg">Create Post</a>
-        </div>
-    </nav>
 
-    <main>
-        @yield('content')
-    </main>
+
+            <!-- Logout Button (only show if authenticated) -->
+            @auth
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="px-4 py-2 mt-2 text-white bg-red-600 rounded-lg hover:bg-red-700">Logout</button>
+                </form>
+            @endauth
+        </div>
+
+        <main>
+            @yield('content')
+        </main>
     </body>
 </html>

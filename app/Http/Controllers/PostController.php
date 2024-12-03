@@ -32,9 +32,11 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::with('user')->paginate(10);
+        // Get the posts of the logged-in user
+        $posts = Post::where('user_id', auth()->id())->with('user')->paginate(10);
         return view('posts.index', ['posts' => $posts]);
     }
+
 
     public function show($id)
     {
